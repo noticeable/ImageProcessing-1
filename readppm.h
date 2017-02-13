@@ -1,3 +1,6 @@
+#ifndef READPPM_H
+#define READPPM_H
+
 #define MAX_BUFFERSIZE 1024
 #define BAN 3
 
@@ -51,3 +54,5 @@ void readppm(char filename[], unsigned char *img)
     fread(img, sizeof(unsigned char), wid * hei * BAN, fp);
     fclose(fp);
 }
+
+#endif

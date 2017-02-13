@@ -1,8 +1,9 @@
+#ifndef READPGM_H
+#define READPGM_H 
+
 #define MAX_BUFFERSIZE 1024
 
 int wid, hei;
-
-void readppm(char filename[], unsigned char *img);
 
 void readppm(char filename[], unsigned char *img)
 {
@@ -50,3 +51,5 @@ void readppm(char filename[], unsigned char *img)
     fread(img, sizeof(unsigned char), wid * hei, fp);
     fclose(fp);
 }
+
+#endif

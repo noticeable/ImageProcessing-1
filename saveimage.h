@@ -1,10 +1,6 @@
 // 画像データを保存する(ppm, pgm)
-
-#include <stdio.h>
-#include <stdlib.h>
-
-void saveppm(char [], unsigned char *, int, int);
-void savepgm(char [], unsigned char *, int, int);
+#ifndef SAVEIMAGE_H
+#define SAVEIMAGE_H
 
 void saveppm(char filename[], unsigned char *img, int width, int height)
 {
@@ -38,3 +34,5 @@ void savepgm(char filename[], unsigned char *img, int width, int height)
  
     fclose(fp);   
 }
+
+#endif
