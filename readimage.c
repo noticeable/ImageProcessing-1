@@ -1,4 +1,6 @@
 // 画像の読み込み用ヘッダファイル
+#include <stdio.h>
+#include <stdlib.h>
 #include "readimage.h"
 
 void readpgm(char filename[], unsigned char *img)

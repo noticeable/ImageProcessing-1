@@ -1,4 +1,6 @@
 // 画像データを返す
+#include <stdio.h>
+#include <math.h>
 #include "wabun.h"
 
 void wabun1x3(unsigned char *img1, unsigned char *img2, unsigned char *dst, int width, int height)

@@ -1,4 +1,5 @@
 // カラー合成画像の作成
+#include <stdio.h>
 #include "composite.h"
 
 void composite(unsigned char *img1, unsigned char *img2, int width, int height, unsigned char *dst)
