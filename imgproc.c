@@ -3,6 +3,7 @@
 #include <math.h>
 #include "imgproc.h"
 
+// グレースケール化
 void grayscale(unsigned char *img, unsigned char *dst, int wid, int hei)
 {
     unsigned char *pa, *pb, *pc, *da, *db;
@@ -45,6 +46,7 @@ void grayscale(unsigned char *img, unsigned char *dst, int wid, int hei)
     }
 }
 
+// カラー合成画像の作成
 void composite(unsigned char *img1, unsigned char *img2, int width, int height, unsigned char *dst)
 {
     unsigned char *pa, *pb, *pc, *pd, *da, *db;
@@ -62,6 +64,7 @@ void composite(unsigned char *img1, unsigned char *img2, int width, int height, 
     }
 }
 
+// 和文の差の計算
 void wabun1x3(unsigned char *img1, unsigned char *img2, unsigned char *dst, int width, int height)
 {
     unsigned char *pa, *pb, *pc, *pd, *pe, *pf, *da, *db;
@@ -214,6 +217,7 @@ void wabun3x3(unsigned char *img1, unsigned char *img2, unsigned char *dst, int 
     }
 }
 
+// 水平方向の1次元のオプティカルフローの計算
 void opticalFlowhori(unsigned char *img1, unsigned char *img2, int wid, int hei, unsigned char *dst)
 {
     int mask = 3;
@@ -271,4 +275,33 @@ void opticalFlowhori(unsigned char *img1, unsigned char *img2, int wid, int hei,
         }
     }
 
+}
+
+// ダウンサンプリング
+void pyrDown(unsigned char *img, unsigned char *dst, int width, int height)
+{
+    int wid = width / 2;
+    int hei = height / 2;
+    unsigned char *pa, *pb, *pc, *pd, *da, *db, *dc;
+    double sum, mean;
+    int size = 2;
+    int i, j, k, l;
+
+    for (i = 0, pa = img, da = dst; i < hei; i++, pa += width * size, da += wid)
+    {
+        for (j = 0, pb = pa, db = da; j < wid; j++, pb += size, db++)
+        {
+            // 4画素を1画素にする(平均を求める)
+            sum = 0;
+            for (k = 0, pc = pb; k < size; k++, pc += width)
+            {
+                for (l = 0, pd = pc; l < size; l++, pd++)
+                {
+                    sum += (double)*pd;
+                }
+            }
+            mean = sum / (size * size);
+            *db = (unsigned char)mean;
+        }
+    }
 }
