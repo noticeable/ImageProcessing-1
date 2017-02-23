@@ -1,0 +1,9 @@
+C言語で画像処理を行う際に頻繁に使う処理をヘッダーファイルにした
+
+composite.h：2枚の画像からカラー合成画像を作成する
+imemory.h：ppm画像とpgm画像用にメモリを動的に確保する
+imgproc.h：まとめたファイル
+perspectiveTransformation.h：2次元から2次元への射影変換を行い画像を重ね合わせる
+readimage.h：ppmとpgm画像を読み込む
+saveimage.h：ppmとpgm画像を保存する
+wabun.h：小領域での和文の差を計算する
