@@ -128,13 +128,13 @@ void perspectiveTrans2d(double A[], unsigned char *img, unsigned char *dst, int 
     }
 }
 
-void perspectiveTrans2d_two(double A_l[], unsigned char imgL*, unsigned char *dstL, double A_r[], unsigned char *imgR, unsigned char *dstR)
+void perspectiveTrans2d_two(double A_l[], unsigned char *imgL, unsigned char *dstL, double A_r[], unsigned char *imgR, unsigned char *dstR, int wid, int hei)
 {
     unsigned char *pa, *pb, *pc, *pd, *pe, *pf;
     int band = 3;
     int i, j, k; // i, jは変換後の座標
     double u, v, ux, vy, s, t, sx, ty, int_number;
-    int Ax, Ay, Bx, By, Cx, Cy, Dx, Dy, As, At, Bs, By, Cs, Ct, Ds, Dt;
+    int Ax, Ay, Bx, By, Cx, Cy, Dx, Dy, As, At, Bs, Bt, Cs, Ct, Ds, Dt;
 
     // 変換後座標に対応する変換前の座標を求める
     // 補間法：Bi-linear
