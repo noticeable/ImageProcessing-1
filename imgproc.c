@@ -213,3 +213,62 @@ void wabun3x3(unsigned char *img1, unsigned char *img2, unsigned char *dst, int 
         }
     }
 }
+
+void opticalFlowhori(unsigned char *img1, unsigned char *img2, int wid, int hei, unsigned char *dst)
+{
+    int mask = 3;
+    unsigned char *pa, *pb, *pc, *pd, *pe, *pf, *da, *db;
+    int i, j, k;
+    double alpha = 0.1;
+    double left, right, dx, dtl, dtr, vx;
+
+    for (i = 0, pa = img1, pd = img2, da = dst; i < hei; i++, pa += wid, pd += wid, da += wid)
+    {
+        for (j = 0, pb = pa, pe = pd, db = da; j < wid; j++, pb++, pe++, db++)
+        {
+            // マスク処理
+            if (j >= (mask - 1) / 2 && j < wid - ((mask - 1) / 2))
+            {
+                dx = 0;
+                dtl = 0;
+                dtr = 0;
+                for (k = 0, pc = pb - ((mask - 1) / 2), pf = pe - ((mask - 1) / 2); k < mask; k++, pc++, pf++)
+                {
+                    left = (double)*pc;
+                    right = (double)*pf;
+
+                    if (k == 0)
+                    {
+                        dx += left / (-2);
+                        dtl += left / (-2);
+                        dtr += right / 2;
+                    }
+                    else if (k == 1)
+                    {
+                    }
+                    else 
+                    {
+                        dx += left / 2;
+                        dtl += left / (-2);
+                        dtr += right / 2;
+                    }
+                }
+                vx = fabs(dtl + dtr) / (fabs(dx) + alpha);
+
+                if (vx >= 0 && vx < 1)
+                {
+                    *db = 255;
+                }
+                else
+                {
+                    *db = 0;
+                }
+            }
+            else
+            {
+                *db = 0;
+            }
+        }
+    }
+
+}
