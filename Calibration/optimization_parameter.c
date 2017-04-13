@@ -26,8 +26,8 @@ int main(void)
 {
     char filename[256];
     double x[6]; // 求めるパラメータ：x[0]=α、x[1]=β、x[2]=γ、x[3]=cx、x[4]=cy、x[5]=cz
-    double eta = 0.00001; // 学習係数
-    double epsilon = 0.000001;
+    double eta = 0.000001; // 学習係数
+    double epsilon = 0.00000001;
     int i;
 
     sprintf(filename, "coefficient/coefficient_l.txt");
@@ -41,7 +41,7 @@ int main(void)
     x[0] = 0; // α
     x[1] = 0; // β
     x[2] = 0; // γ
-    x[3] = 10; // cx
+    x[3] = 0; // cx
     x[4] = 0; // cy
     x[5] = 0; // cz
 
@@ -174,6 +174,7 @@ double fp(double x[])
         v = (coef_l[4]*x_ + coef_l[5]*y_ + coef_l[6]*z_ + coef_l[7]) / (coef_l[8]*x_ + coef_l[9]*y_ + coef_l[10]*z_ + 1);
 
         p += (s - u)*(s - u) + (t - v)*(t - v);
+        //p += fabs(s - u) + fabs(t - v);
     }
 
     return p;
