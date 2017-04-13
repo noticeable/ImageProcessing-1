@@ -26,8 +26,8 @@ int main(void)
 {
     char filename[256];
     double x[6]; // 求めるパラメータ：x[0]=α、x[1]=β、x[2]=γ、x[3]=cx、x[4]=cy、x[5]=cz
-    double eta = 0.0001; // 学習係数
-    double epsilon = 0.00001;
+    double eta = 0.00001; // 学習係数
+    double epsilon = 0.000001;
     int i;
 
     sprintf(filename, "coefficient/coefficient_l.txt");
