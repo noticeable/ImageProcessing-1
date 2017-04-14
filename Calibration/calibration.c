@@ -7,6 +7,7 @@
 #define PI 3.141592
 
 void readcoeff(char [], double []); // 3次元から2次元への射影変換の係数の読み込み
+void calibration(double [], double []); // 求めたパラメータを使い、３軸を回転する
 
 int main()
 {
@@ -18,6 +19,8 @@ int main()
     readcoeff(filename, coef_l);   // 射影変換の係数の読み込み
     sprintf(filename, "coefficient/coefficient_c.txt");
     readcoeff(filename, coef_c);   // 射影変換の係数の読み込み
+
+   
 
     return 0;
 }
@@ -45,4 +48,9 @@ void readcoeff(char filename[], double coef[])
         }
     }
     fclose(fp);
+}
+
+void calibration(double para[], double coordinates[])
+{
+    
 }
