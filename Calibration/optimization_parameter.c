@@ -20,28 +20,29 @@ void update_x(double [], double); // ベクトルxの更新
 
 double coef_l[11];
 double coef_c[11];
-double coordinates[12] = {-37, 170, 364, 30, 180, 430, 30, 108.2, 430, -37, 100, 364}; // 70点だから210
+//double coordinates[12] = {-37, 170, 364, 30, 180, 430, 30, 108.2, 430, -37, 100, 364}; // 70点だから210
+double coordinates[210];
 
 int main(void)
 {
     char filename[256];
     double x[6]; // 求めるパラメータ：x[0]=α、x[1]=β、x[2]=γ、x[3]=cx、x[4]=cy、x[5]=cz
-    double eta = 0.000001; // 学習係数
-    double epsilon = 0.00000001;
+    double eta = 0.1; // 学習係数
+    double epsilon = 0.00001;
     int i;
 
     sprintf(filename, "coefficient/coefficient_l.txt");
     readcoeff(filename, coef_l);   // 射影変換の係数の読み込み
     sprintf(filename, "coefficient/coefficient_c.txt");
     readcoeff(filename, coef_c);   // 射影変換の係数の読み込み
-    //sprintf(filename, "coordinate/world_coordinate_c.txt");
-    //readcoordinate(filename, coordinates);   // 3次元座標の読み込み
+    sprintf(filename, "coordinate/world_coordinate_c.txt");
+    readcoordinate(filename, coordinates);   // 3次元座標の読み込み
 
     // 初期値：適宜調整必須
     x[0] = 0; // α
     x[1] = 0; // β
     x[2] = 0; // γ
-    x[3] = 0; // cx
+    x[3] = -10; // cx
     x[4] = 0; // cy
     x[5] = 0; // cz
 
@@ -139,7 +140,7 @@ double fp(double x[])
     double s, t, u, v;
     double rad_a, rad_b, rad_g;
     double a, b, c, d, e, f, g, h, i; // 回転行列の各要素
-    int num = 4;
+    int num = 70;
     int j, index;
 
     /* ラジアンに変換 */
